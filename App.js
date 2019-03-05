@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
+import PlaceInput from './src/components/PlaceInput/PlaceInput'
+import PlaceList from './src/components/PlaceList/PlaceList'
 
 type Props = {};
 export default class App extends Component<Props> {
-  state = {
-    placeName : ""
-  }
-  placeNameChangeHandler = val => {
-    this.setState({
-      placeName: val
-    })
 
+  state = {
+    places: []
   }
 
   render() {
+    const placesOutput = this.state.places.map((place, i) =>
+      <ListItem key={i}>placeName={place}</ListItem>
+    )
     return (
       <View style={styles.container}>
-        <TextInput
-          style={{ width: 150 }}
-          placeholder="An awesome input"
-          value={this.state.placeName}
-          onChangeText={this.placeNameChangeHandler}
-        />
-
+        <PlaceInput />
+        <View>{placesOutput}</View>
       </View>
-    );
+    )
   }
 }
 
@@ -35,15 +30,5 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
