@@ -12,7 +12,9 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+import com.reactnativenavigation.NavigationApplication;
+
+public class MainApplication extends NavigationApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -20,13 +22,13 @@ public class MainApplication extends Application implements ReactApplication {
       return BuildConfig.DEBUG;
     }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-          new VectorIconsPackage()
-      );
-    }
+    // @Override
+    // protected List<ReactPackage> getPackages() {
+    //   return Arrays.<ReactPackage>asList(
+    //       new MainReactPackage(),
+    //       new VectorIconsPackage()
+    //   );
+    // }
 
     @Override
     protected String getJSMainModuleName() {
@@ -44,4 +46,24 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
   }
+@Override
+	public boolean isDebug() {
+		// Make sure you are using BuildConfig from your own application
+		return BuildConfig.DEBUG;
+	}
+
+	protected List<ReactPackage> getPackages() {
+		// Add additional packages you require here
+		// No need to add RnnPackage and MainReactPackage
+		return Arrays.<ReactPackage>asList(
+			// eg. new VectorIconsPackage()
+      new VectorIconsPackage()
+		);
+	}
+
+	@Override
+	public List<ReactPackage> createAdditionalReactPackages() {
+		return getPackages();
+	}
+  
 }
