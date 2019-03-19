@@ -2,7 +2,7 @@ package com.rncourse;
 
 import com.reactnativenavigation.controllers.SplashActivity;
 
-public class MainActivity extends SplashActivity {
+public class MainActivity extends com.reactnativenavigation.controllers.SplashActivity {
 
     /**
      * Returns the name of the main component registered from JavaScript.
